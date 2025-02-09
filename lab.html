@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pygmalion Play</title>
+    <link rel="stylesheet" type="text/css" href="Bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="jsGame/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="Bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="jsGame/blockly_compressed.js"></script>
+    <script type = "text/javascript" src="jsGame/msg/js/es.js"></script>
+    <script type="text/javascript" src="jsGame/core/lib-dialogs.js" ></script>
+    <script type="text/javascript" src="jsGame/core/lib-games.js" ></script>
+    <script type="text/javascript" src="jsGame/core/lib-interface.js" ></script>
+
+</head>
+<body>
+    <div style="display: none">
+        <span id="Games_name">Juegos de Blockly</span>
+        <span id="Games_puzzle">Rompecabezas</span>
+        <span id="Games_maze">Laberinto</span>
+        <span id="Games_bird">Pájaro</span>
+        <span id="Games_turtle">Tortuga</span>
+        <span id="Games_movie">Película</span>
+        <span id="Games_pondTutor">Tutor del estanque</span>
+        <span id="Games_pond">Estanque</span>
+        <span id="Games_linesOfCode1">Resolviste este nivel con 1 línea de JavaScript:</span>
+        <span id="Games_linesOfCode2">Resolviste este nivel con %1 líneas de JavaScript:</span>
+        <span id="Games_nextLevel">¿Estás listo/a para el nivel %1?</span>
+        <span id="Games_finalLevel">¿Estás listo/a para el siguiente desafío?</span>
+        <span id="Games_linkTooltip">Guardar y enlazar a los bloques.</span>
+        <span id="Games_runTooltip">Ejecutar el programa que escribiste.</span>
+        <span id="Games_runProgram">Ejecutar el programa</span>
+        <span id="Games_resetTooltip">Detener el programa y restablecer el nivel.</span>
+        <span id="Games_resetProgram">Restablecer</span>
+        <span id="Games_help">Ayuda</span>
+        <span id="Games_dialogOk">Aceptar</span>
+        <span id="Games_dialogCancel">Cancelar</span>
+        <span id="Games_catLogic">Lógica</span>
+        <span id="Games_catLoops">Bucles</span>
+        <span id="Games_catMath">Matemáticas</span>
+        <span id="Games_catText">Texto</span>
+        <span id="Games_catLists">Listas</span>
+        <span id="Games_catColour">Color</span>
+        <span id="Games_catVariables">Variables</span>
+        <span id="Games_catProcedures">Funciones</span>
+        <span id="Games_httpRequestError">Hubo un problema con la petición.</span>
+        <span id="Games_linkAlert">Comparte tus bloques con este enlace:%1</span>
+        <span id="Games_hashError">«%1» no corresponde con ningún programa guardado.</span>
+        <span id="Games_xmlError">No se pudo cargar el archivo guardado.  ¿Quizá fue creado con otra versión de Blockly?</span>
+        <span id="Games_listVariable">lista</span>
+        <span id="Games_textVariable">texto</span>
+    </div>
+    <div style="display: none">
+        <span id="Maze_moveForward">avanzar</span>
+        <span id="Maze_turnLeft">girar a la izquierda</span>
+        <span id="Maze_turnRight">girar a la derecha</span>
+        <span id="Maze_doCode">hacer</span>
+        <span id="Maze_elseCode">sino</span>
+        <span id="Maze_helpIfElse">Los bloques 'si-sino' hacen una cosa o la otra.</span>
+        <span id="Maze_pathAhead">si hay camino enfrente</span>
+        <span id="Maze_pathLeft">si hay camino a la izquierda</span>
+        <span id="Maze_pathRight">si hay camino a la derecha</span>
+        <span id="Maze_repeatUntil">repetir hasta</span>
+        <span id="Maze_moveForwardTooltip">Mueve al jugador un cuadro hacia delante.</span>
+        <span id="Maze_turnTooltip">Gira al jugador a izquierda o derecha 90 grados.</span>
+        <span id="Maze_ifTooltip">Si hay un camino en la dirección especificada, \nentonces ejecuta unas acciones. </span>
+        <span id="Maze_ifelseTooltip">Si hay un camino en la dirección especificada, \nentonces ejecuta el primer bloque de acciones. \nSino, haz el segundo bloque de acciones. </span>
+        <span id="Maze_whileTooltip">Repite las acciones contenidas hasta alcanzar el \npunto final. </span>
+        <span id="Maze_capacity0">Te quedan %0 bloques.</span>
+        <span id="Maze_capacity1">Te queda %1 bloque.</span>
+        <span id="Maze_capacity2">Te quedan %2 bloques.</span>
+    </div>
+    <div id="container-level" class="container-fluid">
+        <div class="row header">
+            <div class="col-xs-2 imagotipo text-center">
+                <img src="img/imagotipo.svg" class="img-responsive">
+            </div>
+            <div class="col-xs-7 text-center">
+                <div id="label-levels">Niveles</div>
+                <div id="levels" style="display: inline-block"></div>
+            </div>
+            <div class="col-xs-1 text-center">
+                <button id="btndesafio" class="btn btn-default">Desafio</button>
+            </div>
+            <div class="col-xs-2 text-center">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Productos
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="../pintor/pintor.html">Pintor</a></li>
+                        <li><a href="../..">Pygmalion - IDE</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div id="container-game" class="container-fluid">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="canvas">
+                    <g id="look" style="display: none;">
+                        <path d="M 0,-15 a 15 15 0 0 1 15 15"></path>
+                        <path d="M 0,-35 a 35 35 0 0 1 35 35"></path>
+                        <path d="M 0,-55 a 55 55 0 0 1 55 55" ></path>
+                    </g>
+                </svg>
+            </div>
+            <div class="container-fluid" id="container-buttons">
+                <button id="RunButton" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-play"></span>&nbsp;&nbsp;Ejecutar</button>
+                <button id="ResetButton" class = "btn btn-danger btn-lg" style="display: none"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Reiniciar</button>
+            </div>
+        </div>
+        <div id="container-blockly">
+            <div id="blockly-bar">
+                <div id="bar-bloques">Bloques</div>
+                <div id="bar-workspace">
+                    Bloques Usados <span id="blocksUsed-text">0</span>&nbsp;/&nbsp;<span id="maxBlocks-text">0</span>
+                    &nbsp;&nbsp;<span id="warning" class="glyphicon glyphicon-warning-sign"></span>
+                    <div id="block-Audio">
+                        <div id="audioOn"><span class="glyphicon glyphicon-volume-up"></span></div>
+                        <div id="audioOff" style="display: none;"><span class="glyphicon glyphicon-volume-off"></span></div>
+                    </div>
+                </div>
+            </div>
+            <div id="blockly"></div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <img id="modal-img" src="" class="img-responsive">
+                    </div>
+                    <div id="modal-text">
+                        <p style="white-space: initial;"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <audio id="bg-audio" src="media/Electrodoodle.mp3" style="display: none" controls autoplay loop>
+    </audio>
+
+    <script type="text/javascript" src="jsGame/tooltip.js"></script>
+    <script type="text/javascript" src="jsGame/generator/javascript.js"></script>
+    <script type="text/javascript" src="jsGame/storageOwn.js"></script>
+    <script type="text/javascript" src="jsGame/build-template.js"></script>
+    <script type="text/javascript" src="jsGame/blockly.js" ></script>
+    <script type="text/javascript" src="jsGame/declarations.js" ></script>
+    <script type="text/javascript" src="jsGame/blocks/blocks.js"></script>
+    <script type="text/javascript" src="jsGame/maze.js" ></script>
+    <script type="text/javascript" src="jsGame/core/acorn_interpreter.js" ></script>
+    <script type="text/javascript" src="jsGame/schedule.js" ></script>
+
+</body>
+</html>

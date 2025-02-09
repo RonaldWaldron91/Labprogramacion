@@ -1,0 +1,159 @@
+body{
+  background-color: #F2F2F2;
+}
+
+#container-blockly{
+  position: absolute;
+  bottom: 10px
+}
+#blockly{
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+
+#blockly-bar{
+  width: 100%;
+  color: #fff;
+  background-color: #179BD3;
+}
+#blockly-bar > div{
+  display: inline-block;
+  padding-top: 1.0rem;
+  padding-bottom: 1.0rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+#bar-bloques{
+  border-right: 1px solid #fff;
+}
+
+#warning-block{
+  display: none;
+}
+
+/*Barra principal*/
+.header{
+  background-color: #035574;
+  color: #fff;
+  margin-bottom: 1.0rem;
+  margin-top: 1.0rem;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.header > div{
+  padding-bottom: 0.7rem;
+  padding-top: 0.7rem;
+}
+
+.imagotipo{
+  background-image: url('../img/franja.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#return-window{
+  margin-right: 1.0rem;
+  font-size: inherit;
+  cursor: pointer;
+  cursor: hand;
+}
+
+#levels > div{
+  display : inline-block;
+}
+#label-levels{
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 1.0rem;
+}
+.optionLevel {
+  margin-right: 1.0rem;
+  vertical-align: middle;
+}
+
+.optionLevel > a{
+  display: block;
+  background-color: #fff;
+  text-decoration: none;
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border: 2px solid #c6cacd;
+}
+
+.optionLevel > a:hover{
+  background-color: magenta;
+  color : #fff;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.optionLevel > a > span{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+#container-buttons{
+  padding-left: 0px !important;
+}
+
+/* 'Look' icon */
+#look>path {
+  display: none;
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-opacity: 0.7;
+}
+
+
+/*Modal dialog*/
+.modal-body > div{
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+  margin-right: 2.0rem;
+}
+
+#modal-text{
+  font-size: 2.0rem;
+  font-weight: bold;
+  color: #0098DA;
+}
+
+#block-Audio{
+  display: inline-block;
+  float: right;
+  margin-right: 2.0rem;
+  cursor: hand;
+  cursor: pointer;
+}
+
+/*Tooltips*/
+
+.tooltip-inner{
+  background-color: #0098DA !important;
+}
+
+.tooltip.bottom .tooltip-arrow{
+  border-bottom-color: #0098DA !important;
+}
+
+.tooltip.top .tooltip-arrow{
+  border-top-color: #0098DA !important;
+}
+
+.tooltip.right .tooltip-arrow{
+  border-right-color: #0098DA !important;
+}
+
+.tooltip.left .tooltip-arrow{
+  border-left-color: #0098DA !important;
+}
